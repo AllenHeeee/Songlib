@@ -20,7 +20,7 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar prefWidth="858.0" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -108,13 +108,14 @@
                   <Label layoutX="45.0" layoutY="161.0" prefHeight="22.0" prefWidth="117.0" text="Artist:" AnchorPane.topAnchor="161.0" />
                   <Label layoutX="38.0" layoutY="242.0" text="Album:" AnchorPane.topAnchor="242.0" />
                   <Label layoutX="44.0" layoutY="328.0" text="Year:" AnchorPane.topAnchor="328.0" />
-                  <Button layoutX="79.0" layoutY="430.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Edit" />
-                  <Button layoutX="152.0" layoutY="430.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Delete" />
+                  <Button layoutX="79.0" layoutY="378.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Edit" />
+                  <Button layoutX="151.0" layoutY="378.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Delete" />
                   <TextField layoutX="85.0" layoutY="83.0" prefHeight="23.0" prefWidth="110.0" />
                   <TextField layoutX="85.0" layoutY="160.0" prefHeight="23.0" prefWidth="110.0" />
                   <TextField layoutX="87.0" layoutY="241.0" prefHeight="23.0" prefWidth="110.0" />
                   <TextField layoutX="87.0" layoutY="324.0" prefHeight="23.0" prefWidth="110.0" />
-                  <Button layoutX="6.0" layoutY="430.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Add" />
+                  <Button layoutX="6.0" layoutY="378.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Add" />
+                  <Label layoutX="34.0" layoutY="438.0" prefHeight="39.0" prefWidth="153.0" text="（Result notes)" />
           </children>
         </AnchorPane>
       </items>
