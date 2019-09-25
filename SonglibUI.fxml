@@ -45,25 +45,25 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ListView prefHeight="510.0" prefWidth="298.0" />
+                  <ListView fx:id="SongList" prefHeight="510.0" prefWidth="298.0" />
                </children>
             </VBox>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" layoutX="152.0" layoutY="67.0" text="Song Name" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="67.0">
+                  <Label fx:id="SongNameShow" alignment="CENTER" layoutX="152.0" layoutY="67.0" text="Song Name" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="67.0">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="193.0" layoutY="123.0" text="Author" textAlignment="CENTER" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="123.0">
+                  <Label fx:id="AuthorShow" alignment="CENTER" layoutX="193.0" layoutY="123.0" text="Author" textAlignment="CENTER" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="123.0">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
                   <Button layoutX="174.0" layoutY="204.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" text="Pause" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="204.0" />
-                  <Button layoutX="14.0" layoutY="204.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" text="Last Song" AnchorPane.leftAnchor="14.0" />
-                  <Button layoutX="333.0" layoutY="204.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" text="Next Song" AnchorPane.rightAnchor="15.0" />
-                  <Button layoutX="333.0" layoutY="522.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" text="Exit" />
+                  <Button fx:id="LastSongButton" layoutX="14.0" layoutY="204.0" mnemonicParsing="false" onAction="#LastSongTapped" prefHeight="39.0" prefWidth="95.0" text="Last Song" AnchorPane.leftAnchor="14.0" />
+                  <Button fx:id="NestSongButton" layoutX="333.0" layoutY="204.0" mnemonicParsing="false" onAction="#NextSongTapped" prefHeight="39.0" prefWidth="95.0" text="Next Song" AnchorPane.rightAnchor="15.0" />
+                  <Button fx:id="Exit" layoutX="333.0" layoutY="522.0" mnemonicParsing="false" onAction="#ExitTapped" prefHeight="39.0" prefWidth="95.0" text="Exit" />
                   <Label alignment="CENTER" layoutX="204.0" layoutY="14.0" style="&#10;" text="Detail" textAlignment="CENTER" wrapText="false">
                      <font>
                         <Font size="18.0" fx:id="x11" />
@@ -72,22 +72,22 @@
                         <Color blue="0.624" green="0.624" red="0.624" fx:id="x21" />
                      </textFill>
                   </Label>
-                  <TextField layoutX="202.0" layoutY="269.0" prefHeight="23.0" prefWidth="110.0" />
-                  <TextField layoutX="204.0" layoutY="367.0" prefHeight="23.0" prefWidth="110.0" />
-                  <TextField layoutX="204.0" layoutY="318.0" prefHeight="23.0" prefWidth="110.0" />
-                  <TextField layoutX="204.0" layoutY="418.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="SongNameEdit" layoutX="202.0" layoutY="269.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="AlbumEdit" layoutX="204.0" layoutY="367.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="ArtistEdit" layoutX="204.0" layoutY="318.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="YearEdit" layoutX="204.0" layoutY="418.0" prefHeight="23.0" prefWidth="110.0" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="273.0" prefHeight="15.0" prefWidth="118.0" text=" Song Name:" textAlignment="CENTER" />
                   <Label layoutX="154.0" layoutY="320.0" prefHeight="22.0" prefWidth="117.0" text="Artist:" />
                   <Label layoutX="151.0" layoutY="371.0" text="Album:" />
                   <Label layoutX="158.0" layoutY="426.0" text="Year:" />
-                  <Button layoutX="109.0" layoutY="473.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Edit" />
-                  <Button layoutX="301.0" layoutY="473.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Delete" />
-                  <Label alignment="CENTER" layoutX="193.0" layoutY="146.0" text="Album" textAlignment="CENTER">
+                  <Button fx:id="EditButton" layoutX="109.0" layoutY="473.0" mnemonicParsing="false" onAction="#EditTapped" prefHeight="39.0" prefWidth="63.0" text="Edit" />
+                  <Button fx:id="DeleteButton" layoutX="301.0" layoutY="473.0" mnemonicParsing="false" onAction="#DeleteTapped" prefHeight="39.0" prefWidth="63.0" text="Delete" />
+                  <Label fx:id="AlbumShow" alignment="CENTER" layoutX="193.0" layoutY="146.0" text="Album" textAlignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="204.0" layoutY="169.0" text="Year" textAlignment="CENTER">
+                  <Label fx:id="YearShow" alignment="CENTER" layoutX="204.0" layoutY="169.0" text="Year" textAlignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -101,11 +101,11 @@
                   <Label layoutX="45.0" layoutY="161.0" prefHeight="22.0" prefWidth="117.0" text="Artist:" AnchorPane.topAnchor="161.0" />
                   <Label layoutX="38.0" layoutY="242.0" text="Album:" AnchorPane.topAnchor="242.0" />
                   <Label layoutX="44.0" layoutY="328.0" text="Year:" AnchorPane.topAnchor="328.0" />
-                  <TextField layoutX="85.0" layoutY="83.0" prefHeight="23.0" prefWidth="110.0" />
-                  <TextField layoutX="85.0" layoutY="160.0" prefHeight="23.0" prefWidth="110.0" />
-                  <TextField layoutX="87.0" layoutY="241.0" prefHeight="23.0" prefWidth="110.0" />
-                  <TextField layoutX="87.0" layoutY="324.0" prefHeight="23.0" prefWidth="110.0" />
-                  <Button layoutX="79.0" layoutY="376.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" text="Add" />
+                  <TextField fx:id="SongNameAdd" layoutX="85.0" layoutY="83.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="AritstAdd" layoutX="85.0" layoutY="160.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="AlbumAdd" layoutX="87.0" layoutY="241.0" prefHeight="23.0" prefWidth="110.0" />
+                  <TextField fx:id="YearAdd" layoutX="85.0" layoutY="316.0" prefHeight="23.0" prefWidth="110.0" />
+                  <Button fx:id="AddButton" layoutX="79.0" layoutY="376.0" mnemonicParsing="false" onAction="#AddTapped" prefHeight="39.0" prefWidth="63.0" text="Add" />
           </children>
         </AnchorPane>
       </items>
