@@ -45,7 +45,7 @@
                                 </Label>
                             </children>
                         </AnchorPane>
-                        <ListView fx:id="SongList" prefHeight="510.0" prefWidth="298.0" />
+                        <ListView fx:id="SongListUI" prefHeight="510.0" prefWidth="298.0" />
                     </children>
                 </VBox>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -112,7 +112,7 @@
         </SplitPane>
         <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
             <children>
-                <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Notice" HBox.hgrow="ALWAYS">
+                <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" prefHeight="30.0" prefWidth="61.0" text="Notice" HBox.hgrow="ALWAYS">
                     <font>
                         <Font size="11.0" fx:id="x3" />
                     </font>
@@ -120,7 +120,10 @@
                         <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
                     </textFill>
                 </Label>
-                <Pane prefHeight="109.0" prefWidth="766.0" HBox.hgrow="ALWAYS" />
+                <Pane prefHeight="109.0" prefWidth="766.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label fx:id="NoticeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="172.0" layoutY="8.0" prefHeight="15.0" prefWidth="443.0" textAlignment="CENTER" textFill="#ed0909" />
+                    </children></Pane>
                 <Label font="$x3" maxWidth="-1.0" text="Notice" textFill="$x4" HBox.hgrow="NEVER" />
             </children>
             <padding>

@@ -1,0 +1,3 @@
+@SongName: qwe	@Artist: eerw	@Album: qwerqwe	@Year: 1234
+@SongName: qwef	@Artist: qwef	@Album: qwef	@Year: 12
+@SongName: asdf	@Artist: fdas	@Album: asdf	@Year: 2030
