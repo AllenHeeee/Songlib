@@ -47,35 +47,13 @@ public class SongList {
         }
         bReader.close();
     }
-    /*
-    public static void readFileIntoList()  throws IOException{        //
-        String fileName = "../SonglibTestUI/src/structure/database.txt";       //
-        String [] arrs=null;
-        int year=0;
-        try(FileReader reader =new FileReader(fileName);           //
-            BufferedReader readerCom= new BufferedReader(reader)          //
-        ){                                                          //
-            String line;             //
-            while((line=readerCom.readLine()) != null){                //
-                arrs=line.split("\t");
-                try {
-                    year=Integer.parseInt(arrs[3]);
-                }catch (Exception ex){
-                    showInputError();
-                    return;
-                }
-                listforRe.add(new Song(arrs[0],arrs[1],arrs[2],year));
-            }                                        //
-        }catch(IOException ex){                   //
-            ex.printStackTrace();               //
-        }                             //
-    }                               //*/
-    public static void showInputError(){            //
-        Alert alert = new Alert(Alert.AlertType.ERROR);         //
-        alert.setTitle("Error");                //
-        alert.setHeaderText("Add Failed");          //
-        alert.setContentText("Bad Input!");             //
-        alert.showAndWait();                    //
-    }                       //
+
+    public static void showInputError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Add Failed");
+        alert.setContentText("Bad Input!");
+        alert.showAndWait();
+    }
 
 }
