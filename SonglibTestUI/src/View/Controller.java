@@ -16,8 +16,8 @@ import structure.SongList;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {    //
-    ObservableList obslist= FXCollections.observableArrayList();   //
+public class Controller implements Initializable {    //   修改过
+    ObservableList obslist= FXCollections.observableArrayList();   //   修改过
     @FXML Label SongNameShow;
     @FXML TextField SongNameAdd;
     @FXML TextField AritstAdd;
@@ -27,7 +27,7 @@ public class Controller implements Initializable {    //
     @FXML TextField ArtistEdit;
     @FXML TextField AlbumEdit;
     @FXML TextField YearEdit;
-    @FXML ListView<String> SongListUI;               //
+    @FXML ListView<String> SongListUI;               //   修改过
     @FXML Label NoticeLabel;
     public void LastSongTapped(ActionEvent e) {
 
@@ -39,7 +39,7 @@ public class Controller implements Initializable {    //
 
     }
     public void EditTapped(ActionEvent e) {
-
+        
     }
     public void DeleteTapped(ActionEvent e) {
 
@@ -81,13 +81,13 @@ public class Controller implements Initializable {    //
         YearAdd.setText("");
         NoticeLabel.setText("Add Succeed!");
         System.out.println("Add Succeed!");
-        SongListUI.getItems().clear();    //
+        SongListUI.getItems().clear();    //   从这里开始
         loadData();
         SongNameEdit.setText(songname);
         ArtistEdit.setText(artist);
         AlbumEdit.setText(Album);
         YearEdit.setText(yearStr);        //
-                    //这里需要加一个功能：listview自动选择到刚添加的元素
+        SongListUI.getSelectionModel().select(songname+"   By:"+artist);     //到这里结束
     }
     public static void showInputError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);

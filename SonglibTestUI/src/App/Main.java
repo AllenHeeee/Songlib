@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 900, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
-                                         //
+                                         //   这里原来的那个函数移动了
 
     }
 
