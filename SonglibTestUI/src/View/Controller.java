@@ -39,7 +39,7 @@ public class Controller implements Initializable {    //   修改过
 
     }
     public void EditTapped(ActionEvent e) {
-        
+
     }
     public void DeleteTapped(ActionEvent e) {
 
@@ -106,6 +106,10 @@ public class Controller implements Initializable {    //   修改过
         }
         loadData();
         SongListUI.getSelectionModel().select(0);
+        SongNameEdit.setText(SongList.list.get(0).getSongName());
+        ArtistEdit.setText(SongList.list.get(0).getArtist());
+        AlbumEdit.setText(SongList.list.get(0).getAlbum());
+        YearEdit.setText(SongList.list.get(0).getYear());
     }
     private void loadData(){
         obslist.removeAll(obslist);
