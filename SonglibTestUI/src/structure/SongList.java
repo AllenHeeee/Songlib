@@ -8,6 +8,61 @@ import java.util.ArrayList;
 
 public class SongList {
     public static ArrayList<Song> list = new ArrayList<Song>();
+    public static int currindex=-1;
+    public static boolean addIntoAL(Song song){
+        if(list.isEmpty()){
+            list.add(song);
+            return true;
+        }
+        if(list.size()==1){
+            if(list.get(0).songName.toLowerCase().compareTo(song.songName.toLowerCase())==0){
+                //compare artist
+                if(list.get(0).artist.toLowerCase().compareTo(song.artist.toLowerCase())==0){
+                    return false;
+                }else if(list.get(0).artist.toLowerCase().compareTo(song.artist.toLowerCase())>0){
+                    list.add(0,song);
+                    return true;
+                }else{
+                    list.add(song);
+                    return true;
+                }
+            }else if(list.get(0).songName.toLowerCase().compareTo(song.songName.toLowerCase())>0){
+                list.add(0,song);
+                return true;
+            }else{
+                list.add(song);
+                return true;
+            }
+        }
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).songName.toLowerCase().compareTo(song.songName.toLowerCase())==0){
+                //compare artist
+                int right=i+1;
+                for(int j=i+1;j<list.size();j++){
+                    if(list.get(i).songName.toLowerCase().equals(list.get(j).songName.toLowerCase())){
+                        right=j+1;
+                    }else{
+                        break;
+                    }
+                }
+                for(int j=i;j<right;j++){
+                    if(list.get(j).artist.toLowerCase().compareTo(song.artist.toLowerCase())==0){
+                        return false;
+                    }else if(list.get(j).artist.toLowerCase().compareTo(song.artist.toLowerCase())>0){
+                        list.add(j,song);
+                        return true;
+                    }
+                }
+                list.add(right,song);
+                return true;
+            }else if(list.get(i).songName.toLowerCase().compareTo(song.songName.toLowerCase())>0){
+                list.add(i,song);
+                return true;
+            }
+        }
+        list.add(song);
+        return true;
+    }
     public static String deleteAssignChar(String str,int on,char c) {
         int count = 0;
         for(int i = 0;i < str.length();i++) {
@@ -19,7 +74,6 @@ public class SongList {
         }
         return str;
     }
-  //  public static ArrayList<Song> listforRe = new ArrayList<Song>();   //
     public static void loadListIntoFile() throws IOException {
         String fileName = "../SonglibTestUI/src/structure/database.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));

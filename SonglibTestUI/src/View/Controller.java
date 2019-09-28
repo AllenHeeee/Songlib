@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {    //   修改过
-    ObservableList obslist= FXCollections.observableArrayList();   //   修改过
+public class Controller implements Initializable {
+    ObservableList obslist= FXCollections.observableArrayList();
     @FXML Label SongNameShow;
     @FXML TextField SongNameAdd;
     @FXML TextField AritstAdd;
@@ -29,8 +29,11 @@ public class Controller implements Initializable {    //   修改过
     @FXML TextField ArtistEdit;
     @FXML TextField AlbumEdit;
     @FXML TextField YearEdit;
-    @FXML ListView<String> SongListUI;               //   修改过
+    @FXML ListView<String> SongListUI;
     @FXML Label NoticeLabel;
+    @FXML Label AuthorShow;
+    @FXML Label AlbumShow;
+    @FXML Label YearShow;
     public void LastSongTapped(ActionEvent e) {
 
     }
@@ -44,16 +47,33 @@ public class Controller implements Initializable {    //   修改过
 
     }
     public void DeleteTapped(ActionEvent e) {
-        remove(SongList.list,SongNameEdit.getText(),ArtistEdit.getText());  //从这里开始
+       SongList.currindex=SongListUI.getSelectionModel().getSelectedIndex();
+        remove(SongList.list,SongNameEdit.getText(),ArtistEdit.getText());
         SongListUI.getItems().clear();
         loadData();
         try{
             SongList.loadListIntoFile();
-        }catch (Exception ex){
+        }catch (Exception ex) {
             System.out.println(ex.toString());
-        }                                                        //到这里结束
+        }
+        if(SongList.currindex>=SongList.list.size())
+        {
+            SongList.currindex--;
+        }
+        if(SongList.currindex<0)
+        {
+            SongNameEdit.setText("");
+            ArtistEdit.setText("");
+            AlbumEdit.setText("");
+            YearEdit.setText("");
+        }else {
+            retrieveData(SongList.currindex);
+            SongListUI.getSelectionModel().select(SongList.currindex);
+        }
     }
     public void ChooseTapped(ActionEvent e) {
+        SongList.currindex = SongListUI.getSelectionModel().getSelectedIndex();
+        retrieveData(SongList.currindex);
     }
     public void AddTapped(ActionEvent e) {
         String songname=SongNameAdd.getText();
@@ -64,19 +84,29 @@ public class Controller implements Initializable {    //   修改过
         try {
             year=Integer.parseInt(YearAdd.getText());
         }catch (Exception ex){
-            showInputError();
+            showInputError("Bad Input");
             return;
         }
 
         if(songname.trim().isEmpty()||artist.trim().isEmpty()||Album.trim().isEmpty()||year<0||year>2019){
-            showInputError();
+            showInputError("Bad Input");
             NoticeLabel.setText("Add Failed!");
             System.out.println("Add Failed!");
             return;
         }
 
 
-        SongList.list.add(new Song(songname,artist,Album,yearStr));
+        if(!SongList.addIntoAL(new Song(songname,artist,Album,year+""))){
+            System.out.println("Add Failed!");
+            showInputError("Song Existed!");
+            NoticeLabel.setText("");
+            SongNameAdd.setText("");
+            AritstAdd.setText("");
+            AlbumAdd.setText("");
+            YearAdd.setText("");
+            NoticeLabel.setText("Add Failed!");
+            return;
+        }
 
         try{
             SongList.loadListIntoFile();
@@ -90,24 +120,38 @@ public class Controller implements Initializable {    //   修改过
         YearAdd.setText("");
         NoticeLabel.setText("Add Succeed!");
         System.out.println("Add Succeed!");
-        SongListUI.getItems().clear();    //   从这里开始
+        SongListUI.getItems().clear();
         loadData();
         SongNameEdit.setText(songname);
         ArtistEdit.setText(artist);
         AlbumEdit.setText(Album);
         YearEdit.setText(yearStr);
-        SongListUI.getSelectionModel().select(songname+"   By:"+artist);     //到这里结束
+        SongNameShow.setText(songname);
+        AuthorShow.setText("By: "+artist);
+        AlbumShow.setText("Album: "+Album);
+        YearShow.setText("Year: "+yearStr);
+        SongListUI.getSelectionModel().select(songname+"   By:"+artist);
     }
-    public static void showInputError(){
+    public static void showInputError(String mess){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Add Failed");
-        alert.setContentText("Bad Input!");
+        alert.setContentText(mess);
         alert.showAndWait();
     }
 
+    public void retrieveData(int index){
+        SongNameEdit.setText(SongList.list.get(index).getSongName());
+        SongNameShow.setText(SongList.list.get(index).getSongName());
+        ArtistEdit.setText(SongList.list.get(index).getArtist());
+        AuthorShow.setText("By: "+SongList.list.get(index).getArtist());
+        AlbumEdit.setText(SongList.list.get(index).getAlbum());
+        AlbumShow.setText("Album: "+SongList.list.get(index).getAlbum());
+        YearEdit.setText(SongList.list.get(index).getYear());
+        YearShow.setText("Year: "+SongList.list.get(index).getYear());
+    }
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {     //  从这开始
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
             SongList.fildRead();
         }catch (Exception ex){
@@ -117,10 +161,9 @@ public class Controller implements Initializable {    //   修改过
         loadData();
         SongListUI.getSelectionModel().select(0);
         if(SongList.list.get(0).getSongName()!=null) {
-            SongNameEdit.setText(SongList.list.get(0).getSongName());
-            ArtistEdit.setText(SongList.list.get(0).getArtist());
-            AlbumEdit.setText(SongList.list.get(0).getAlbum());
-            YearEdit.setText(SongList.list.get(0).getYear());
+            SongList.currindex=0;
+            /// Edited!
+            retrieveData(SongList.currindex);
         }
         }
     }
@@ -143,5 +186,5 @@ public class Controller implements Initializable {    //   修改过
                 iter.remove();
         }
     }
-        //  到这结束
+
 }
