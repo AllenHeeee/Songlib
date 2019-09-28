@@ -14,6 +14,8 @@ import structure.Song;
 import structure.SongList;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {    //   修改过
@@ -42,7 +44,14 @@ public class Controller implements Initializable {    //   修改过
 
     }
     public void DeleteTapped(ActionEvent e) {
-
+        remove(SongList.list,SongNameEdit.getText(),ArtistEdit.getText());  //从这里开始
+        SongListUI.getItems().clear();
+        loadData();
+        try{
+            SongList.loadListIntoFile();
+        }catch (Exception ex){
+            System.out.println(ex.toString());
+        }                                                        //到这里结束
     }
     public void ChooseTapped(ActionEvent e) {
     }
@@ -125,6 +134,14 @@ public class Controller implements Initializable {    //   修改过
         }
 
         SongListUI.getItems().addAll(obslist);
+    }
+    public static void remove(ArrayList<Song> list, String target1, String target2){
+        Iterator<Song> iter=list.iterator();
+        while(iter.hasNext()){
+            Song item=iter.next();
+            if(item.getSongName().equals(target1) && item.getArtist().equals(target2))
+                iter.remove();
+        }
     }
         //  到这结束
 }
