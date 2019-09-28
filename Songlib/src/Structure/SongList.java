@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class SongList {
     public static ArrayList<Song> list = new ArrayList<Song>();
+    public static int currIndex=-1;
     public static boolean addIntoAL(Song song){
         if(list.isEmpty()){
             list.add(song);

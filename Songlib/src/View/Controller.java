@@ -30,6 +30,9 @@ public class Controller implements Initializable {    //   修改过
     @FXML TextField ArtistEdit;
     @FXML TextField AlbumEdit;
     @FXML TextField YearEdit;
+    @FXML Label AuthorShow;
+    @FXML Label AlbumShow;
+    @FXML Label YearShow;
 
     public void LastSongTapped(ActionEvent e) {
 
@@ -54,6 +57,15 @@ public class Controller implements Initializable {    //   修改过
         }
     }
     public void ChooseTapped(ActionEvent e) {
+        SongList.currIndex = SongListUI.getSelectionModel().getSelectedIndex();
+        SongNameEdit.setText(SongList.list.get(SongList.currIndex).getSongName());
+        SongNameShow.setText(SongList.list.get(SongList.currIndex).getSongName());
+        ArtistEdit.setText(SongList.list.get(SongList.currIndex).getArtist());
+        AuthorShow.setText("By: "+SongList.list.get(SongList.currIndex).getArtist());
+        AlbumEdit.setText(SongList.list.get(SongList.currIndex).getAlbum());
+        AlbumShow.setText("Album: "+SongList.list.get(SongList.currIndex).getAlbum());
+        YearEdit.setText(SongList.list.get(SongList.currIndex).getYear());
+        YearShow.setText("Year: "+SongList.list.get(SongList.currIndex).getYear());
     }
     public void AddTapped(ActionEvent e) {
         String songname=SongNameAdd.getText();
@@ -113,7 +125,7 @@ public class Controller implements Initializable {    //   修改过
         alert.showAndWait();
     }
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {     //  从这开始
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
             SongList.fildRead();
         }catch (Exception ex){
@@ -123,10 +135,16 @@ public class Controller implements Initializable {    //   修改过
             loadData();
             SongListUI.getSelectionModel().select(0);
             if(SongList.list.get(0).getSongName()!=null) {
-                SongNameEdit.setText(SongList.list.get(0).getSongName());
-                ArtistEdit.setText(SongList.list.get(0).getArtist());
-                AlbumEdit.setText(SongList.list.get(0).getAlbum());
-                YearEdit.setText(SongList.list.get(0).getYear());
+                SongList.currIndex=0;
+                /// Edited!
+                SongNameEdit.setText(SongList.list.get(SongList.currIndex).getSongName());
+                SongNameShow.setText(SongList.list.get(SongList.currIndex).getSongName());
+                ArtistEdit.setText(SongList.list.get(SongList.currIndex).getArtist());
+                AuthorShow.setText("By: "+SongList.list.get(SongList.currIndex).getArtist());
+                AlbumEdit.setText(SongList.list.get(SongList.currIndex).getAlbum());
+                AlbumShow.setText("Album: "+SongList.list.get(SongList.currIndex).getAlbum());
+                YearEdit.setText(SongList.list.get(SongList.currIndex).getYear());
+                YearShow.setText("Year: "+SongList.list.get(SongList.currIndex).getYear());
             }
         }
     }
