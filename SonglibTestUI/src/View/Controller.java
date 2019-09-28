@@ -35,19 +35,94 @@ public class Controller implements Initializable {
     @FXML Label AlbumShow;
     @FXML Label YearShow;
     public void LastSongTapped(ActionEvent e) {
-
+        if(SongList.list.size()==0){
+            return;
+        }
+        if(SongList.currindex-1<0){
+            return;
+        }
+        SongList.currindex--;
+        retrieveData(SongList.currindex);
+        SongListUI.getSelectionModel().select(SongList.currindex);
     }
     public void NextSongTapped(ActionEvent e) {
-
+        if(SongList.list.size()==0){
+            return;
+        }
+        if(SongList.currindex+1>=SongList.list.size()){
+            return;
+        }
+        SongList.currindex++;
+        retrieveData(SongList.currindex);
+        SongListUI.getSelectionModel().select(SongList.currindex);
     }
     public void ExitTapped(ActionEvent e) {
 
     }
-    public void EditTapped(ActionEvent e) {
+    public void EditTapped(ActionEvent e) {           //开始
+        int pos=SongListUI.getSelectionModel().getSelectedIndex();
+        String Songname=SongList.list.get(pos).getSongName();
+        String Artist=SongList.list.get(pos).getArtist();
+        String Album=SongList.list.get(pos).getAlbum();
+        String Year=SongList.list.get(pos).getYear();
+        String Songname2=SongNameEdit.getText();
+        String Artist2=ArtistEdit.getText();
+        String Album2=AlbumEdit.getText();
+        String Year2=YearEdit.getText();
+        int year=0;
+        try {
+            year=Integer.parseInt(YearEdit.getText());
+        }catch (Exception ex){
+            showInputError("Bad Input");
+            NoticeLabel.setText("Add Failed!");
+            return;
+        }/*
+        for(int i=0;i<SongList.list.size();i++)
+        {
+            if(SongList.list.get(i).getSongName()==Songname2 && SongList.list.get(i).getArtist()==Artist2)
+            {
+                NoticeLabel.setText("Edit Fail! The song already exists");
+            }
+            else if(Songname2.trim().isEmpty()||Artist2.trim().isEmpty()||Album2.trim().isEmpty()||year+<0||year>2019){
+            showInputError("Bad Input");
+            NoticeLabel.setText("Edit Failed!");
+            System.out.println("Edit Failed!");
+            return;
+            }
+            else
+            {
+                remove(SongList.list,Songname,Artist);
 
-    }
+            }
+        }*/
+      //  Song song=new Song(Songname2,Artist2,Album2,Year2)
+        if(!SongList.addIntoAL(new Song(Songname2,Artist2,Album2,year+""))){
+            System.out.println("Edit Failed!");
+            showInputError("Song Existed!");
+            NoticeLabel.setText("");
+            SongNameAdd.setText("");
+            AritstAdd.setText("");
+            AlbumAdd.setText("");
+            YearAdd.setText("");
+            NoticeLabel.setText("Edit Failed!");
+            return;
+        }
+        remove(SongList.list,Songname,Artist);
+        try{
+            SongList.loadListIntoFile();
+        }catch (Exception ex){
+            System.out.println(ex.toString());
+        }
+        SongListUI.getItems().clear();
+        loadData();
+        SongListUI.getSelectionModel().select(Songname2+"   By:"+Artist2);
+    }                                //结束
     public void DeleteTapped(ActionEvent e) {
        SongList.currindex=SongListUI.getSelectionModel().getSelectedIndex();
+       if(SongNameEdit.getText().isEmpty())       //开始
+            NoticeLabel.setText("Delete Fail!");
+        else
+            NoticeLabel.setText("Delete Success!");// 结束
         remove(SongList.list,SongNameEdit.getText(),ArtistEdit.getText());
         SongListUI.getItems().clear();
         loadData();
@@ -62,10 +137,15 @@ public class Controller implements Initializable {
         }
         if(SongList.currindex<0)
         {
+            SongNameShow.setText("Song Name");
+            AuthorShow.setText("Artist");
+            AlbumShow.setText("Album");
+            YearShow.setText("Year");
             SongNameEdit.setText("");
             ArtistEdit.setText("");
             AlbumEdit.setText("");
             YearEdit.setText("");
+
         }else {
             retrieveData(SongList.currindex);
             SongListUI.getSelectionModel().select(SongList.currindex);
@@ -85,6 +165,7 @@ public class Controller implements Initializable {
             year=Integer.parseInt(YearAdd.getText());
         }catch (Exception ex){
             showInputError("Bad Input");
+            NoticeLabel.setText("Add Failed!");
             return;
         }
 
@@ -162,7 +243,6 @@ public class Controller implements Initializable {
         SongListUI.getSelectionModel().select(0);
         if(SongList.list.get(0).getSongName()!=null) {
             SongList.currindex=0;
-            /// Edited!
             retrieveData(SongList.currindex);
         }
         }
