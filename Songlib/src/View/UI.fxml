@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="View.Controller" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
     <children>
         <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <items>
@@ -45,7 +45,8 @@
                                 </Label>
                             </children>
                         </AnchorPane>
-                        <ListView fx:id="SongListUI" prefHeight="510.0" prefWidth="298.0" />
+                        <ListView fx:id="SongListUI" prefHeight="465.0" prefWidth="222.0" />
+                        <Button fx:id="ChooseButton" mnemonicParsing="false" onAction="#ChooseTapped" prefHeight="41.0" prefWidth="222.0" text="Choose" />
                     </children>
                 </VBox>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">

@@ -4,8 +4,8 @@ public class Song {
     String songName;
     String artist;
     String album;
-    int year;
-    public Song(String songName,String artist,String album,int year){
+    String year;
+    public Song(String songName,String artist,String album,String year){
         this.songName=songName;
         this.artist=artist;
         this.album=album;
@@ -20,7 +20,7 @@ public class Song {
     public String getAlbum(){
         return this.album;
     }
-    public int getYear(){
+    public String getYear(){
         return this.year;
     }
     public void setSongName(String newName){
@@ -32,7 +32,7 @@ public class Song {
     public void setAlbum(String newAlbun){
         this.album=newAlbun;
     }
-    public void setYear(int newYear){
+    public void setYear(String newYear){
         this.year=newYear;
     }
     public boolean equals(Object another){
