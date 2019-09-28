@@ -86,7 +86,7 @@ public class Controller implements Initializable {    //   修改过
         SongNameEdit.setText(songname);
         ArtistEdit.setText(artist);
         AlbumEdit.setText(Album);
-        YearEdit.setText(yearStr);        //
+        YearEdit.setText(yearStr);
         SongListUI.getSelectionModel().select(songname+"   By:"+artist);     //到这里结束
     }
     public static void showInputError(){
@@ -104,12 +104,16 @@ public class Controller implements Initializable {    //   修改过
         }catch (Exception ex){
             System.out.println(ex.toString());
         }
+        if(SongList.list.size()!=0){
         loadData();
         SongListUI.getSelectionModel().select(0);
-        SongNameEdit.setText(SongList.list.get(0).getSongName());
-        ArtistEdit.setText(SongList.list.get(0).getArtist());
-        AlbumEdit.setText(SongList.list.get(0).getAlbum());
-        YearEdit.setText(SongList.list.get(0).getYear());
+        if(SongList.list.get(0).getSongName()!=null) {
+            SongNameEdit.setText(SongList.list.get(0).getSongName());
+            ArtistEdit.setText(SongList.list.get(0).getArtist());
+            AlbumEdit.setText(SongList.list.get(0).getAlbum());
+            YearEdit.setText(SongList.list.get(0).getYear());
+        }
+        }
     }
     private void loadData(){
         obslist.removeAll(obslist);
