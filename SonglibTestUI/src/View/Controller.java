@@ -97,15 +97,14 @@ public class Controller implements Initializable {
         }*/
       //  Song song=new Song(Songname2,Artist2,Album2,Year2)
         if(!SongList.addIntoAL(new Song(Songname2,Artist2,Album2,year+""))){
-            System.out.println("Edit Failed!");
-            showInputError("Song Existed!");
-            NoticeLabel.setText("");
-            SongNameAdd.setText("");
-            AritstAdd.setText("");
-            AlbumAdd.setText("");
-            YearAdd.setText("");
-            NoticeLabel.setText("Edit Failed!");
-            return;
+                    NoticeLabel.setText("Edit Fail! The song already exists");
+                    System.out.println("Edit Failed!");
+                    SongNameEdit.setText(Songname);
+                    ArtistEdit.setText(Artist);
+                    AlbumEdit.setText(Album);
+                    YearEdit.setText(Year);
+                    return;
+
         }
         remove(SongList.list,Songname,Artist);
         try{
@@ -116,6 +115,10 @@ public class Controller implements Initializable {
         SongListUI.getItems().clear();
         loadData();
         SongListUI.getSelectionModel().select(Songname2+"   By:"+Artist2);
+        SongNameShow.setText(Songname2);
+        AuthorShow.setText("By: "+Artist2);
+        AlbumShow.setText("Album: "+Album2);
+        YearShow.setText("Year: "+Year2);
     }                                //结束
     public void DeleteTapped(ActionEvent e) {
        SongList.currindex=SongListUI.getSelectionModel().getSelectedIndex();

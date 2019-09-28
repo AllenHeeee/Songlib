@@ -13,9 +13,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
     <children>
-        <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.2505567928730512, 0.5" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <items>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -38,7 +38,7 @@
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="167.0" layoutY="4.0" prefHeight="15.0" prefWidth="100.0" text="By: Author" textAlignment="CENTER" AnchorPane.rightAnchor="10.0">
+                                <Label layoutX="167.0" layoutY="4.0" prefHeight="15.0" prefWidth="80.0" text="By: Author" textAlignment="CENTER" AnchorPane.rightAnchor="10.0">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -77,8 +77,8 @@
                         <TextField fx:id="AlbumEdit" layoutX="204.0" layoutY="367.0" prefHeight="23.0" prefWidth="110.0" />
                         <TextField fx:id="ArtistEdit" layoutX="204.0" layoutY="318.0" prefHeight="23.0" prefWidth="110.0" />
                         <TextField fx:id="YearEdit" layoutX="204.0" layoutY="418.0" prefHeight="23.0" prefWidth="110.0" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="273.0" prefHeight="15.0" prefWidth="118.0" text=" Song Name:" textAlignment="CENTER" />
-                        <Label layoutX="154.0" layoutY="320.0" prefHeight="22.0" prefWidth="117.0" text="Artist:" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="273.0" prefHeight="15.0" prefWidth="104.0" text=" Song Name:" textAlignment="CENTER" />
+                        <Label layoutX="149.0" layoutY="318.0" prefHeight="22.0" prefWidth="50.0" text="Artist:" />
                         <Label layoutX="151.0" layoutY="371.0" text="Album:" />
                         <Label layoutX="158.0" layoutY="426.0" text="Year:" />
                         <Button fx:id="EditButton" layoutX="109.0" layoutY="473.0" mnemonicParsing="false" onAction="#EditTapped" prefHeight="39.0" prefWidth="63.0" text="Edit" />
