@@ -60,11 +60,11 @@ public class Controller implements Initializable {
 
     }
     public void EditTapped(ActionEvent e) {           //开始
-        int pos=SongListUI.getSelectionModel().getSelectedIndex();
-        String Songname=SongList.list.get(pos).getSongName();
-        String Artist=SongList.list.get(pos).getArtist();
-        String Album=SongList.list.get(pos).getAlbum();
-        String Year=SongList.list.get(pos).getYear();
+        //int pos=SongListUI.getSelectionModel().getSelectedIndex();
+        String Songname=SongList.list.get(SongList.currindex).getSongName();
+        String Artist=SongList.list.get(SongList.currindex).getArtist();
+        String Album=SongList.list.get(SongList.currindex).getAlbum();
+        String Year=SongList.list.get(SongList.currindex).getYear();
         String Songname2=SongNameEdit.getText();
         String Artist2=ArtistEdit.getText();
         String Album2=AlbumEdit.getText();
@@ -76,27 +76,8 @@ public class Controller implements Initializable {
             showInputError("Bad Input");
             NoticeLabel.setText("Add Failed!");
             return;
-        }/*
-        for(int i=0;i<SongList.list.size();i++)
-        {
-            if(SongList.list.get(i).getSongName()==Songname2 && SongList.list.get(i).getArtist()==Artist2)
-            {
-                NoticeLabel.setText("Edit Fail! The song already exists");
-            }
-            else if(Songname2.trim().isEmpty()||Artist2.trim().isEmpty()||Album2.trim().isEmpty()||year+<0||year>2019){
-            showInputError("Bad Input");
-            NoticeLabel.setText("Edit Failed!");
-            System.out.println("Edit Failed!");
-            return;
-            }
-            else
-            {
-                remove(SongList.list,Songname,Artist);
-
-            }
-        }*/
-      //  Song song=new Song(Songname2,Artist2,Album2,Year2)
-        if(!SongList.addIntoAL(new Song(Songname2,Artist2,Album2,year+""))){
+        }
+        if((!SongList.addIntoAL(new Song(Songname2,Artist2,Album2,year+""))) && (!Songname.equals(Songname2)) &&(!Artist.equals(Artist2))){
                     NoticeLabel.setText("Edit Fail! The song already exists");
                     System.out.println("Edit Failed!");
                     SongNameEdit.setText(Songname);
@@ -106,6 +87,12 @@ public class Controller implements Initializable {
                     return;
 
         }
+        if(Songname.equals(Songname2) && Artist.equals(Artist2))
+        {
+            SongList.list.get(SongList.currindex).setAlbum(Album2);
+            SongList.list.get(SongList.currindex).setYear(Year2);
+        }
+        else
         remove(SongList.list,Songname,Artist);
         try{
             SongList.loadListIntoFile();
